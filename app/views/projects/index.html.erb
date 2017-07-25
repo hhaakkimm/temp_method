@@ -21,6 +21,13 @@
           <%= link_to 'Destroy', project, method: :delete,
                       data: { confirm: 'Are you sure?' } %>
         <% end %>
+      <% if user_signed_in?%>
+        <% if current_user.check == false %>
+          <div class="follow_status">
+            <%= render "partials/follow_status", object: project %>
+          </div>
+        <% end %>
+      <% end %>
     </td>
   </tr>
 <% end %>
