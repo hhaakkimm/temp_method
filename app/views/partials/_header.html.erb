@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <li>
   <%= link_to('Logout', destroy_user_session_path, method: :delete) %> |
-     <a href="http://localhost:3000/pages/profile"><%= current_user.email %></a>|
+     <a href="http://localhost:3000/pages/profile"><%= current_user.email %></a> |
       <% if current_user.check == false %>
-        User
+        Пользователь
       <% else %>
-        Company
+        Компания
       <% end %>
   </li>
 <% else %>
@@ -23,6 +23,8 @@
   </li>
 <% end %>
 <% if user_signed_in? %>
-  <%= link_to "users", users_path%>
+  <%= link_to "users", users_path%> |
+  <%= link_to "convesations", conversations_path%> |
 <% end %>
+<%= link_to "Home", projects_path%>
 <hr>

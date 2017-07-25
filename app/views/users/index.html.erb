@@ -1,4 +1,4 @@
-<h1>Users list</h1>
+<h1>Список пользователей</h1>
 
 <%= form_tag users_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search] %>
@@ -10,12 +10,12 @@
     <dt><%= user.username %></dt>
     <dt><%= user.name %> |
     <% if user.check == false %>
-      User
+      Пользователь
     <% else %>
-      Company
+      Компания
     <% end %>
     </dt>
-    <%= link_to "page", user%>
+    <%= link_to "Страница", user%>
     <hr>
 <% end %>
 <input type="button" onclick="history.back();" value="back"/>
