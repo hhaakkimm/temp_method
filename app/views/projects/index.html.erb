@@ -1,5 +1,10 @@
 <h1>Projects</h1>
 
+<%= form_tag projects_path, :method => 'get' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <table>
 <% @projects.each do |project| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
