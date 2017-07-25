@@ -4,7 +4,7 @@ class AddDetailsToUser < ActiveRecord::Migration[5.1]
     add_column :users, :about, :text
     add_column :users, :username, :string
     add_column :users, :contact, :string
-    add_column :users, :check, :boolean
+    add_column :users, :check, :boolean, default:false
     #add_column :users, :U_type,
   end
 end

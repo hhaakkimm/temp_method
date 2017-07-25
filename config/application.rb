@@ -18,11 +18,11 @@ module Web
     :address => "smtp.gmail.com",
     :domain => "mail.google.com",
     :port => 587,
-    :user_name => "hhaakkimm@gmail.com",
-    :password => "Abdulihkim98",
+    :user_name => "methodprotest@gmail.com",
+    :password => "return12",
     :authentication => "login",
     :enable_starttls_auto => true
   }
-  
+
   end
 end
