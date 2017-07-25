@@ -1,0 +1,29 @@
+<h1>Your projects</h1>
+<table>
+<% @myprojects.each do |project| %>
+  <% if project.user == current_user %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="list_description">
+        <dl>
+          <dt><%= project.title %></dt>
+          <dt><%= project.price %></dt>
+          <dt><%= project.mentor %></dt>
+          <dd><%= project.description %></dd>
+        </dl>
+      </td>
+      <td class="list_actions">
+        <%= link_to 'Show', project %><br/>
+        <%= link_to 'Edit', edit_project_path(project) %><br/>
+        <%= link_to 'Destroy', project, method: :delete,
+                    data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+<br/>
+<% if user_signed_in? %>
+  <%= link_to 'New project', new_project_path %>
+<% end %>
+<br/>
+<input type="button" onclick="history.back();" value="back"/>

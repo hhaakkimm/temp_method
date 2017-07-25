@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<table>
+  <dl>
+    <dt><%= @project.title %></dt>
+    <dd><%= @project.description %></dd>
+    <dt><%= @project.user.email %></dt>
+    <dt><%= @project.price %></dt>
+    <dt><%= @project.mentor %></dt>
+  </dl>
+</table>
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

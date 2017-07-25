@@ -1,0 +1,12 @@
+<h1>My Profile</h1>
+<%= image_tag current_user.avatar(:medium) %>
+<p> Username: <%= current_user.username %> </p>
+<p> Name of Company: <%= current_user.name %> </p>
+<p> email: <%= current_user.email %> </p>
+<p> About: <%= current_user.about %> </p>
+<p> Contact: <%= current_user.contact %> </p>
+<%= link_to('Edit', edit_user_registration_path) %>
+<br/>
+<a href="http://localhost:3000/pages/profile/myprojects">Your projects</a>
+
+<input type="button" onclick="history.back();" value="back"/>
