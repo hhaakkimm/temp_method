@@ -1,11 +1,21 @@
 <p id="notice"><%= notice %></p>
 <table>
   <dl>
+    <%= @project.id %>
     <dt><%= @project.title %></dt>
     <dd><%= @project.description %></dd>
     <dt><%= @project.user.email %></dt>
     <dt><%= @project.price %></dt>
     <dt><%= @project.mentor %></dt>
+    <% User.all.each do |user| %>
+      <% if @project.followers?(user.id) %>
+        <div class="follow_status">
+        <%= render "partials/follow_status", object: user %>
+        </div>
+        <h4>developer: <%= link_to user.name, user %></h4>
+        <hr>
+      <% end %>
+    <% end %>
   </dl>
 </table>
 <%= link_to 'Edit', edit_project_path(@project) %> |

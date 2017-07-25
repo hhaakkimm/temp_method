@@ -1,5 +1,7 @@
-<% if current_user.following?(object.id) %>
-  <%= link_to "Unfollow", relationships_path(project_id: object.id), method: :delete %>
-<% else %>
-  <%= link_to "Follow", relationships_path(project_id: object.id), method: :post %>
+<% if user_signed_in?%>
+  <% if current_user.following?(object.id) %>
+    <%= link_to "remove", relationships_path(project_id: object.id), method: :delete %>
+  <% else %>
+    <%= link_to "add", relationships_path(project_id: object.id), method: :post %>
+  <% end %>
 <% end %>
