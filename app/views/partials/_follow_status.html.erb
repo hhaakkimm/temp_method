@@ -1,7 +1,7 @@
 <% if user_signed_in?%>
   <% if current_user.following?(object.id) %>
-    <%= link_to "Прекратить работу над проектом", relationships_path(project_id: object.id), method: :delete %>
+    <%= link_to "Прекратить работу над проектом", relationships_path(project_id: object.id), method: :delete ,class:"follow_link"%>
   <% else %>
-    <%= link_to "Начать работу над проектом", relationships_path(project_id: object.id), method: :post %>
+    <%= link_to "Начать работу над проектом", relationships_path(project_id: object.id), method: :post,class:"follow_link" %>
   <% end %>
 <% end %>
