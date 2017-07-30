@@ -1,0 +1,53 @@
+.my_project_preview
+{
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  background-color: white;
+}
+.project_picture
+{
+  width: 80%;
+  border-radius: 20px;
+  margin-left: 2%;
+}
+.my_project_preview_info .my_project_title
+{
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.mentor
+{
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.myright_text
+{
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+.my_open_full,.my_open_full:hover,.my_open_full:active
+{
+  margin-top: 20px;
+  border: 1px solid rgba(0,0,0,.12);
+  stroke: transparent;
+  color: #fff !important;
+  background: #ed1c40 !important;
+  border-color: #ed1c40 !important;
+}
+.link
+{
+  margin-top: 20px;
+}
+.follow_link
+{
+  border: 1px solid rgba(0,0,0,.12);
+  stroke: transparent;
+  color: #fff !important;
+  background: #ed1c40 !important;
+  border-color: #ed1c40 !important;
+}

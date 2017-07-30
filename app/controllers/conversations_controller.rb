@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_sign_in, only: [:create, :index]
   def index
     @users = User.all
     @conversations = Conversation.all

@@ -67,6 +67,9 @@
           </div>
           <div class="open_company_profile">
             <p><a href="#">Открыть профайл компании</a></p>
+            <% if project.file.url(:original, false) != "/files/original/missing.png"%>
+              <%= link_to "Download", project.file.url(:original, false) %>
+            <% end %>
           </div>
         </div>
       </div>

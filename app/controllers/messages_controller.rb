@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :check_sign_in, only: [:create, :index, :new]
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
   end

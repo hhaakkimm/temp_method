@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_sign_in, only: [:show, :index]
   def index
     @users = User.where(["name LIKE ?","%#{params[:search]}"])
   end
