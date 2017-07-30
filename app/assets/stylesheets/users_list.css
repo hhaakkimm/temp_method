@@ -1,0 +1,60 @@
+.user_preview
+{
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  background-color: white;
+}
+.user_avatar
+{
+  width: 80%;
+  border-radius: 20px;
+  margin-left: 2%;
+}
+.user_preview_info .name_surname
+{
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.keywords
+{
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.right_text
+{
+  margin-top: 70px;
+  margin-bottom: 5px;
+}
+.message{
+  margin-top: 25px;
+}
+.open_profile
+{
+  margin-top: 20px;
+}
+.profile_preview_links
+{
+  border-radius: 5px;
+  padding: 8px 16px ;
+  border: 1px solid rgba(0,0,0,.12);
+  color: #fff ;
+  background: #ed1c40;
+  border-color: #ed1c40;
+}
+.profile_preview_links:hover
+{
+  border-radius: 5px;
+  padding: 8px 16px ;
+  border: 1px solid rgba(0,0,0,.12);
+  color: #fff ;
+  background: #ed1c40;
+  border-color: #ed1c40;
+}
+.second_link
+{
+  margin-top: 70%;
+}

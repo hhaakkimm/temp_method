@@ -5,4 +5,7 @@ class Project < ApplicationRecord
   def	followers?(user_id)
   		self.relationships.find_by_user_id(user_id)
 	end
+
+
+
 end

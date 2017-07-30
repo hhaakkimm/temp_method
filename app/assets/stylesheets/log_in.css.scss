@@ -1,0 +1,40 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.log_in
+{
+  border: 1px solid lightgray;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding-bottom: 3%;
+  background-color: white;
+}
+
+.log_in_header h1
+{
+  color:#ed1c40;
+}
+.email
+{
+  padding-top: 1%;
+  padding-bottom: 5%;
+
+}
+.password
+{
+  padding-top: 1%;
+  padding-bottom: 5%;
+}
+.password input{
+  margin-top: 3%;
+}
+.log_in_button1
+{
+  padding:8px 16px !important;
+  border: 1px solid rgba(0,0,0,.12);
+  stroke: transparent;
+  color: #fff!important;
+  background: #ed1c40;
+  border-color: #ed1c40;
+  border-radius: 5%;
+}

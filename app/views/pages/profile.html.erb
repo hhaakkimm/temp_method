@@ -1,11 +1,37 @@
-<h1> <%= current_user.name %> </h1>
-<%= image_tag current_user.avatar(:medium) %>
-<p> Username: <%= current_user.username %> </p>
-<p> Name of Company: <%= current_user.name %> </p>
-<p> email: <%= current_user.email %> </p>
-<p> About: <%= current_user.about %> </p>
-<p> Contact: <%= current_user.contact %> </p>
-<%= link_to('Edit', edit_user_registration_path) %>
-<br/>
-<a href="http://localhost:3000/pages/profile/myprojects">Your projects</a>
-<input type="button" onclick="history.back();" value="back"/>
+<div class="container">
+  <div >
+    <%= image_tag current_user.avatar(:medium),class:"profile_image" %>
+  </div>
+  <div class="profile_info">
+
+    <h2 class = "name"><%= current_user.name %></h2>
+    <h6 class = "name"><%= link_to('Изменить', edit_user_registration_path) %></h6>
+    <div class="row">
+      <div class="info">
+
+        <h3 class="hd" style = "font-weight: 600">Информация о пользователе</h3>
+          <p class="sub-txt"><%= current_user.about %></p>
+      </div>
+      <div class="info1">
+        <h3 class="hd" style = "font-weight: 600">Портфолио</h3>
+
+      </div>
+      <div class="info">
+        <h3 class="hd" style = "font-weight: 600">Ключевые слова</h3>
+          <ul>
+            <li>Ruby</li>
+            <li>Swift</li>
+            <li>C++</li>
+          </ul>
+      </div>
+      <div class="info1">
+        <h3 class="hd" style = "font-weight: 600">Контакты</h3>
+        <p class="sub-txt"><%= current_user.email %></p>
+        <p class="sub-txt"><%= current_user.contact %></p>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

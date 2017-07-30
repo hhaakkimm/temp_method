@@ -1,0 +1,219 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+.mynav
+{
+  height: 20px;
+}
+.mynav1
+{
+  height: 150px;
+}
+.picture
+{
+  height: 40vh;
+  background-image: url(../images/1.jpeg);
+  padding-top: 5%;
+  margin-top: 70px;
+}
+.picture h1
+{
+  margin-top: 3%;
+}
+.registration_keywords
+{
+  padding: 0;
+}
+.registration_keywords li
+{
+  padding: 5px 10px 5px 10px;
+  border : 1px solid black;
+  width: 20%;
+  margin-top:5%;
+  list-style-type: none;
+  display: inline;
+}
+.reg_key{
+  margin-left: 2%;
+}
+.person a
+{
+  padding: 8px 16px;
+  border: 1px solid rgba(0,0,0,.12);
+  stroke: transparent;
+  color: #fff!important;
+  background: #ed1c40;
+  border-color: #ed1c40;
+  margin-bottom: 7%;
+}
+.person li
+{
+  font-size: 2rem;
+  list-style-type: none;
+}
+.person h5
+{
+  color:rgba(0,0,0,.26);
+  text-align: center;
+  padding-right: 47%;
+}
+.person h3
+{
+  font-size: 1.8rem;
+}
+.input
+{
+  margin-top: 0;
+  width: 70%;
+  margin-bottom: 3%;
+}
+.radio
+{
+  width: 10px;
+  margin: 0;
+}
+#person_two,#person_three,#person_four,#person_five,#person_six,#person_seven,#person_eight,#person_nine
+{
+  display: none;
+  margin-top: 20%;
+  margin-bottom: 25%;
+  clear: both;
+}
+.active
+{
+  background: black;
+  color:white;
+}
+.person h3
+{
+  text-align: center;
+  padding-right: 47%;
+}
+.reg_image
+{
+  float: left;
+  margin-left: 40%;
+  width: 4%;
+}
+.reg_image1
+{
+  float: left;
+  width: 4%;
+  margin-left: 38%;
+}
+.next_button
+{
+  margin-right: 4%;
+}
+.sign_up{
+  border: 1px solid lightgray;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding-bottom: 3%;
+  background-color: white;
+}
+.sign_up_header{
+  border-bottom: 1px solid lightgray;
+}
+.sign_up_header h1{
+  color:#ed1c40;
+}
+.sign_up_form{
+}
+.email{
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border-bottom: 1px solid lightgray;
+}
+.password{
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.password input{
+  margin-top: 3%;
+}
+.sign_up_button{
+}
+.sign_up_button1{
+  padding:8px 16px !important;
+  border: 1px solid rgba(0,0,0,.12);
+  stroke: transparent;
+  color: #fff!important;
+  background: #ed1c40;
+  border-color: #ed1c40;
+  border-radius: 5%;
+  margin-top: 5%;
+}
+.registration_keywords
+{
+  padding: 0;
+}
+.registration_keywords li
+{
+  padding: 5px 10px 5px 10px;
+  border : 1px solid black;
+  width: 20%;
+  margin-top:5%;
+  list-style-type: none;
+  display: inline;
+}
+.reg_key{
+  margin-left: 2%;
+}
+.avatar
+{
+  margin-left: 33%;
+}
+.delete_account
+{
+  padding-top: 5%;
+  border-top: 1px solid lightgray;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar{
+    background: rgb(48,48,48) !important;
+  }
+  .navbar-brand{
+    position: absolute;
+    margin: 15px 0 0 -180px;
+  }
+  .navbar-toggle{
+    position: absolute;
+    margin: 20px 0 0 130px;
+  }
+  .navbar-collapse{
+    position: absolute;
+    background:rgb(48,48,48) !important;
+    width: 30%;
+    margin: 15% 0 0 65% !important;
+    border: none;
+  }
+  .main_page_link, .sign_up_link, .log_in_link{
+    color: white !important;
+  }
+  .sign_up_link{
+    background: none !important;
+    border: none;
+  }
+  .sign_up_link:active{
+    background: none !important;
+    border: none;
+  }
+.reg_image{
+  display: none;
+  }
+  h3{
+    position: absolute;
+    margin: 0 0 0 35%;
+  }
+  h5{
+    color: #DCDCDC   !important;
+  }
+  .sign_up{
+    width: 90%;
+    margin-left: 5%;
+  }
+  .regkeys{
+    margin-top: 5%;
+  }
+}

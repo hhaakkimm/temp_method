@@ -1,40 +1,101 @@
-<h1>Projects</h1>
+
+
+<body>
 
 <%= form_tag projects_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Поиск" %>
+<% end %>
+<br/>
+
+<% @projects.each do |project| %>
+
+<div class="mikaskazala col-lg-9 col-md-9">
+  <div class="project fadeInRight wow">
+    <table class="projects_preview1">
+      <tr class ="mikaskazala2">
+        <td class = "projects_preview_img_td">
+          <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
+        </td>
+        <td class="description">
+          <h4><%= project.title %></h4>
+          <h6 class = "from"><%= project.user.username %></h6>
+        </td>
+        <td class="date">
+          До: 12 августа 2017</br>
+          <%= project.price %>
+        </td>
+        <td class="news_arrow">
+          <button type="button" class="btn btn-primary open_full" data-toggle="modal" data-target="#modal_tasks_<%= project.id %>"><span class="glyphicon glyphicon-menu-right"  aria-hidden="true"></span></button>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal fade" id="modal_tasks_<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content news_modal">
+        <div class="modal-header">
+          <button type="button-large" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2><%= project.title %></h2>
+        </div>
+
+        <h4><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
+        <h4><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span> 100000000</h4>
+        <%= image_tag project.user.avatar(:thumb),class:"task_img" %>
+        <p class = "heading">Описание</p>
+        <p><%=project.description%></p>
+        <p class = "heading">Пример</p>
+        <p>
+          Необходимо создать онлайн-платформу для размещения задач от компаний.
+           Верификация пользователей, не должна портить пользовательский опыт
+           (т.е. будет легкой и удобной).
+          Все пользователи должны иметь возможность видеть задачи, задавать вопросы,
+          получать ответы.
+        </p>
+        <p class = "heading">Требования к человеку</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="links">
+          <div class="work_with_project_link">
+            <% if user_signed_in?%>
+              <% if current_user.check == false %>
+                <div class="follow_status">
+                  <%= render "partials/follow_status", object: project %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="open_company_profile">
+            <p><a href="#">Открыть профайл компании</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
 
-<table>
-<% @projects.each do |project| %>
-  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-    <td class="list_description">
-      <dl>
-        <%= image_tag project.user.avatar(:thumb) %>
-        <dt><%= project.user.email %></dt>
-        <dt><%= project.title %></dt>
-        <dt><%= project.price %></dt>
-        <dt><%= project.mentor %></dt>
-        <dd><%= truncate(strip_tags(project.description),
-        length: 80) %></dd>
-      </dl>
-    </td>
-    <td class="list_actions">
-      <%= link_to 'Show', project %><br/>
-        <% if project.user == current_user %>
-          <%= link_to 'Edit', edit_project_path(project) %><br/>
-          <%= link_to 'Destroy', project, method: :delete,
-                      data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      <% if user_signed_in?%>
-        <% if current_user.check == false %>
-          <div class="follow_status">
-            <%= render "partials/follow_status", object: project %>
-          </div>
-        <% end %>
-      <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-<br/>
+<div class="top">
+  <ul>
+    <li style="font-size:2rem; font-weight:bold;">Best users</li>
+    <li>
+      <img src="" alt="" class="best_users_img img-circle">
+      <span class = "best_users_username">koska</span>
+    </li>
+    <li>
+      <img src="" alt="" class="best_users_img img-circle">
+      <span class = "best_users_username">koska</span>
+    </li>
+    <li>
+      <img src="" alt="" class="best_users_img img-circle">
+      <span class = "best_users_username">koska</span>
+    </li>
+    <li>
+      <img src="" alt="" class="best_users_img img-circle">
+      <span class = "best_users_username">koska</span>
+    </li>
+  </ul>
+</div>
+
+  <script>new WOW().init();</script>
+</body>

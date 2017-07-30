@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :projects
   resources :users
-  root to: 'projects#index'
+  root to: 'pages#home'
   get "/pages/:page" => "pages#show"
   get "pages/profile/myprojects" => "projects#myprojects"
   delete "/relationships", to: "relationships#destroy"

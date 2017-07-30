@@ -1,58 +1,111 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name))    do |f| %>
-  <%= devise_error_messages! %>
-
-
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar%>
+<div class="sign_up col-lg-6 col-md-6">
+  <div class="sign_up_header">
+    <h1>Регистрация</h1>
+    <p>Есть аккаунт? <%= link_to('Войти', new_user_session_path) %> </p>
   </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name))    do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username%>
+    <div class="sign_up_form">
+      <div class="field">
+        <h4><%= f.label :Фото %></h4>
+        <%= f.file_field :avatar,class:"avatar"%>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label "Имя юзера, которое нужно убрать"%><br />
+        <%= f.text_field :username,class:"input"%>
+      </div>
+
+      <div class="field">
+        <%= f.label :Имя %><br />
+        <%= f.text_field :name,class:"input"%>
+      </div>
+
+      <div class="field">
+        <%= f.label "Обо мне" %><br />
+        <%= f.text_field :about,class:"input"%>
+      </div>
+
+      <div class="field">
+        <%= f.label "Контактный телефон" %><br />
+        <%= f.text_field :contact,class:"input"%>
+      </div>
+
+      <div class="field">
+        <%= f.label "Почта" %><br />
+        <%= f.email_field :email,class:"input" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :Пароль %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off",class:"input" %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Повторите пароль" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" ,class:"input"%>
+      </div>
+
+
+      <%= f.radio_button :check, true %> Company <br/>
+      <%= f.radio_button :check, false %> User <br>
+
+
+      <div class="actions">
+        <%= f.submit "Зарегистрироваться",class:"sign_up_button1" %>
+      </div>
+      <br>
+    <% end %>
+      <p>delete voiti link</p>
+    <%= render   "devise/shared/links" %>
+
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name%>
+<!-- <div class="sign_up col-lg-6 col-md-6">
+  <div class="sign_up_header">
+    <h1>Регистрация</h1>
+    <p>Есть аккаунт?<%= link_to('Войти', new_user_session_path,class:'log_in_link')  %></p>
   </div>
-
-  <div class="field">
-    <%= f.label :about %><br />
-    <%= f.text_field :about%>
+  <div class="sign_up_form">
+    <form class="" action="index.html" method="post">
+      <div class="email">
+        <h4>Имя</h4>
+        <input type="text" name="" value="" placeholder="Имя">
+        <h4>Фамилия</h4>
+        <input type="text" name="" value="" placeholder="Фамилия">
+        <h4>О себе</h4>
+        <input type="text" name="" value="" placeholder="Я отличный программист...">
+        <h4>Ссылка на портфолио</h4>
+        <input type="text" name="" value="" placeholder="//https:/">
+        <h4>Ключевые слова</h4>
+            <ul class = "registration_keywords">
+              <div>
+              <li>Ruby</li>
+              <li class = "reg_key">HTML</li>
+              <li class = "reg_key">Swift</li>
+              <li class = "reg_key">Python</li>
+            </div>
+            <div class="regkeys">
+              <li class = "reg_key">C++</li>
+              <li class = "reg_key">C#</li>
+            </div>
+            </ul><br>
+        <h4>Почта</h4>
+        <input type="text" name="" value="" placeholder="example@example.com">
+        <h4>Пароль</h4>
+        <input type="text" name="" value="" placeholder="*******">
+        <h4>Повторить пароль</h4>
+        <input type="text" name="" value="" placeholder="*******">
+      </div>
+      <div class="sign_up_button">
+        <button type="button" name="button" class = "sign_up_button1" >Зарегистрироваться</button>
+      </div>
+    </form>
   </div>
-
-  <div class="field">
-    <%= f.label :contact %><br />
-    <%= f.text_field :contact%>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <%= f.radio_button :check, true %> Company <br/>
-  <%= f.radio_button :check, false %> User
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div> -->

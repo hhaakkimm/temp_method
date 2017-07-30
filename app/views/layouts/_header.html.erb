@@ -1,0 +1,45 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header ">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost:3000">.method</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+
+            <li><a href="http://localhost:3000/pages/how_it_works" class ="main_page_link how">О проекте</a></li>
+            <li><%= link_to "Задачи", projects_path,class:'main_page_link'%></li>
+
+            <% if user_signed_in? %>
+              <li><%= link_to "Все пользователи", users_path,class:'log_in_link'%></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle dropdown_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Нужно поставить имя<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a  href="http://localhost:3000/pages/profile">Мой профиль</a></li>
+                  <li><a href="http://localhost:3000/pages/profile/myprojects">Мои проекты</a></li>
+                  <li><%= link_to "Переписки", conversations_path%></li>
+                  <li><%= link_to('Выйти', destroy_user_session_path, method: :delete) %></li>
+                </ul>
+              </li>
+            <%else%>
+              <li><%= link_to('Войти', new_user_session_path,class:'log_in_link')  %></li>
+              <li><%= link_to('Зарегистрироваться', new_user_registration_path,class:'sign_up_link')  %></li>
+            <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+<!--//////////////////////////////////////////////////End of navbar///////////////////////////////////// -->
