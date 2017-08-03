@@ -19,7 +19,34 @@
         </td>
         <td class="description">
           <h4><%= project.title %></h4>
-          <h6 class = "from"><%= project.user.username %></h6>
+          <h6 class = "from"><%= project.user.email %></h6>
+
+
+          <% count = 0 %>
+          <% if project.sts != -1 %>
+            <% User.all.each do |user| %>
+              <% if project.followers?(user.id) %>
+                <% if user.name == ""%>
+                  <% project.sts = 0%>
+                  <% project.save%>
+                <% else %>
+                  <% project.sts = 1%>
+                  <% project.save%>
+                  <% count+=1 %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+          Проект делают: <%= count %>
+          <% if count > 0%>
+            <h4>в процессе</h4>
+          <% elsif count == 0 && project.sts != -1%>
+            <h4>в рассмотрении</h4>
+            <% project.sts = 0%>
+            <% project.save%>
+          <% elsif project.sts == -1%>
+            <h4>закончен</h4>
+          <% end %>
         </td>
         <td class="date">
           До: 12 августа 2017</br>
@@ -59,9 +86,13 @@
           <div class="work_with_project_link">
             <% if user_signed_in?%>
               <% if current_user.check == false %>
-                <div class="follow_status">
-                  <%= render "partials/follow_status", object: project %>
-                </div>
+                <% if project.sts == -1 %>
+                  <h4>Проект уже завершен</h4>
+                <% else %>
+                  <div class="follow_status">
+                    <%= render "partials/follow_status", object: project %>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
           </div>
@@ -83,19 +114,19 @@
     <li style="font-size:2rem; font-weight:bold;">Best users</li>
     <li>
       <img src="" alt="" class="best_users_img img-circle">
-      <span class = "best_users_username">koska</span>
+      <span class = "best_users_username">soska</span>
     </li>
     <li>
       <img src="" alt="" class="best_users_img img-circle">
-      <span class = "best_users_username">koska</span>
+      <span class = "best_users_username">soska</span>
     </li>
     <li>
       <img src="" alt="" class="best_users_img img-circle">
-      <span class = "best_users_username">koska</span>
+      <span class = "best_users_username">soska</span>
     </li>
     <li>
       <img src="" alt="" class="best_users_img img-circle">
-      <span class = "best_users_username">koska</span>
+      <span class = "best_users_username">soska</span>
     </li>
   </ul>
 </div>

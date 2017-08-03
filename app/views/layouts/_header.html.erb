@@ -1,4 +1,10 @@
-
+<script>
+  $( window ).load(function() {
+    if (window.location.href.indexOf('reload')==-1) {
+         window.location.replace(window.location.href+'?reload');
+    }  
+  });
+</script>
 <nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -23,8 +29,11 @@
 
             <% if user_signed_in? %>
               <li><%= link_to "Все пользователи", users_path,class:'log_in_link'%></li>
+              <% if current_user.notification != 0 %>
+                <li> <a> <%= link_to current_user.notification, my_friends_path %> </a> </li>
+              <%end%>
               <li class="dropdown">
-                <a class="dropdown-toggle dropdown_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Нужно поставить имя<span class="caret"></span></a>
+                <a class="dropdown-toggle dropdown_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email%>  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a  href="http://localhost:3000/pages/profile">Мой профиль</a></li>
                   <li><a href="http://localhost:3000/pages/profile/myprojects">Мои проекты</a></li>
@@ -41,5 +50,16 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-
+    <% ntf = 0 %>
+    <% User.all.each do |friend| %>
+    <% if !(current_user.followinguser?(friend.id) && friend.followinguser?(current_user.id))%>
+        <% if friend.followinguser?(current_user.id) %>
+          <% if current_user.email != friend.email %>
+            <% ntf += 1%>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% current_user.notification = ntf %>
+    <% current_user.save %>
 <!--//////////////////////////////////////////////////End of navbar///////////////////////////////////// -->

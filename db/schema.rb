@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730140230) do
+ActiveRecord::Schema.define(version: 20170803025423) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.boolean "confirm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170730140230) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "mentor"
+    t.integer "sts", default: 0
     t.string "file_file_name"
     t.string "file_content_type"
     t.integer "file_file_size"
@@ -79,9 +88,9 @@ ActiveRecord::Schema.define(version: 20170730140230) do
     t.datetime "avatar_updated_at"
     t.string "name"
     t.text "about"
-    t.string "username"
     t.string "contact"
     t.boolean "check", default: false
+    t.integer "notification"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

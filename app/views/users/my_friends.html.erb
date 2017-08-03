@@ -1,0 +1,26 @@
+<% @friends.each do |friend| %>
+<% if !(current_user.followinguser?(friend.id) && friend.followinguser?(current_user.id))%>
+    <% if current_user.friendships.find_by_friend_id(friend.id) %>
+      <% if current_user.email != friend.email %>
+        <%= link_to friend.email, friend%> <br/> | заявка отправлена <%= render "partials/follow_sts", object: friend %>
+      <% end %>
+    <% end %>
+    <br/>
+    <% if friend.followinguser?(current_user.id) %>
+      <% if current_user.email != friend.email %>
+        Вам отправили заявку: <%= link_to friend.email, friend%> <br/> <%= render "partials/follow_sts", object: friend %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<br/>
+<br/>
+<br/>
+Мои менторы
+<br/>
+<% @friends.each do |friend| %>
+  <% if current_user.followinguser?(friend.id) && friend.followinguser?(current_user.id)%>
+    <%= image_tag friend.avatar(:thumb) %>
+    <%= link_to friend.email, friend%> <br/>
+  <% end %>
+<% end %>

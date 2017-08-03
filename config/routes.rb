@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get "pages/profile/myprojects" => "projects#myprojects"
   delete "/relationships", to: "relationships#destroy"
   resources :relationships, only: [:create]
+  delete "/friendships", to: "friendships#destroy"
+  resources :friendships, only: [:create]
+  get "/my_friends", to: "users#my_friends"
+  get "/requset", to: "users#requset"
   get "/users" => "users#index"
   resources :conversations do
     resources :messages

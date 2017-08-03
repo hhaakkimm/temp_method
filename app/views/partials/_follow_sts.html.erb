@@ -1,0 +1,7 @@
+<% if user_signed_in?%>
+  <% if current_user.followinguser?(object.id) %>
+    <%= link_to "Удалить", friendships_path(friend_id: object.id), method: :delete ,class:"follow_link"%>
+  <% else %>
+    <%= link_to "Добавить", friendships_path(friend_id: object.id), method: :post ,class:"follow_link" %>
+  <% end %>
+<% end %>

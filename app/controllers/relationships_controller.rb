@@ -8,6 +8,7 @@ class RelationshipsController < ApplicationController
       format.js {}
     end
 	end
+
 	def	destroy
     current_user.unfollow(params[:project_id])
     @project = Project.find(params[:project_id])
@@ -16,4 +17,5 @@ class RelationshipsController < ApplicationController
       format.js {}
     end
 	end
+
 end

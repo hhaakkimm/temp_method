@@ -1,20 +1,38 @@
 <p id="notice"><%= notice %></p>
 <table>
   <dl>
-    <%= @project.id %>
+    
     <dt><%= @project.title %></dt>
     <dd><%= @project.description %></dd>
     <dt><%= @project.user.email %></dt>
     <dt><%= @project.price %></dt>
     <dt><%= @project.mentor %></dt>
-    <% User.all.each do |user| %>
-      <% if @project.followers?(user.id) %>
-        <div class="follow_status">
-        <%= render "partials/follow_status", object: user %>
-        </div>
-        <h4>developer: <%= link_to user.name, user %></h4>
-        <hr>
+    <dt><%= @project.sts %></dt>
+    <% if @project.sts == 1%>
+      <h4>в процессе</h4>
+    <% elsif @project.sts == 0%>
+      <h4>в рассмотрении</h4>
+    <% elsif @project.sts == -1%>
+      <h4>закончен</h4>
+    <% end %>
+    <% count = 0 %>
+    <% if @project.sts != -1 %>
+      <% User.all.each do |user| %>
+          <% if @project.followers?(user.id) %>
+
+          <h4>developer: <%= link_to user.name, user %></h4>
+          <% if user.name == ""%>
+            <% @project.sts = 0%>
+            <% @project.save%>
+          <% else %>
+            <% @project.sts = 1%>
+            <% @project.save%>
+            <% count+=1 %>
+          <% end %>
+        <% end %>
       <% end %>
+      Проект делают: <%= count %>
+
     <% end %>
   </dl>
 </table>

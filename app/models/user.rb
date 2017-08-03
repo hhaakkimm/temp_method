@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  validates :name, :username, presence:true
+  validates :name, presence:true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :projects
@@ -10,8 +10,21 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   has_many :relationships
 
+  has_many :friendships
+  has_many :friends, :through => :friendships
+
   def	following?(project_id)
 		self.relationships.find_by_project_id(project_id)
+	end
+
+  def followinguser?(friend_id)
+    self.friendships.find_by_friend_id(friend_id)
+  end
+  def	followuser(friend_id)
+		self.friendships.create(friend_id: friend_id)
+	end
+  def	unfollowuser(friend_id)
+		self.friendships.find_by_friend_id(friend_id).destroy if followinguser?(friend_id)
 	end
 	def	follow(project_id)
 		self.relationships.create(project_id: project_id)
