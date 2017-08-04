@@ -20,18 +20,37 @@
   <div class="right_text col-lg-3">
     <p>Рейтинг</p>
   </div>
-  <div class="message col-lg-3">
+  <% if current_user.check != user.check %>
+    <div class="message col-lg-3">
+      <% if user.email != current_user.email %>
+       <%= link_to 'Написать сообщение', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post',class:"profile_preview_links"%>
+      <% end %>
+    </div>
+    <div class="open_profile col-lg-3">
+      <%= link_to "Открыть профайл", user,class:"profile_preview_links"%>
+    </div>
+
+      <div class="follow_status col-lg-3  ">
+        <%= render "partials/follow_sts", object: user %>
+      </div>
+<%else%>
+  <div class="message1 col-lg-3">
     <% if user.email != current_user.email %>
      <%= link_to 'Написать сообщение', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post',class:"profile_preview_links"%>
-      <% if current_user.check != user.check %>
-        <div class="follow_status">
-          <%= render "partials/follow_sts", object: user %>
-        </div>
-      <% end %>
     <% end %>
   </div>
-  <div class="open_profile col-lg-3">
+  <div class="open_profile1 col-lg-3">
     <%= link_to "Открыть профайл", user,class:"profile_preview_links"%>
   </div>
+  <% end %>
 </div>
 <%end%>
+
+
+<script>
+  $( window ).load(function() {
+    if (window.location.href.indexOf('reload')==-1) {
+        window.location.replace(window.location.href+'?reload');
+    }
+  });
+</script>

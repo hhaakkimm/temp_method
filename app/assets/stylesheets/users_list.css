@@ -29,17 +29,26 @@
   margin-top: 70px;
   margin-bottom: 5px;
 }
-.message{
+.message1{
   margin-top: 25px;
+}
+.open_profile1
+{
+  margin-top: 20px;
+
+}
+.message{
+  margin-top: 15px;
 }
 .open_profile
 {
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .profile_preview_links
 {
   border-radius: 5px;
-  padding: 8px 16px ;
+  padding: 6px 12px ;
   border: 1px solid rgba(0,0,0,.12);
   color: #fff ;
   background: #ed1c40;

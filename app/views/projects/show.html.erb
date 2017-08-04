@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <table>
   <dl>
-    
+
     <dt><%= @project.title %></dt>
     <dd><%= @project.description %></dd>
     <dt><%= @project.user.email %></dt>
@@ -18,8 +18,7 @@
     <% count = 0 %>
     <% if @project.sts != -1 %>
       <% User.all.each do |user| %>
-          <% if @project.followers?(user.id) %>
-
+        <% if @project.followers?(user.id) %>
           <h4>developer: <%= link_to user.name, user %></h4>
           <% if user.name == ""%>
             <% @project.sts = 0%>
@@ -32,9 +31,30 @@
         <% end %>
       <% end %>
       Проект делают: <%= count %>
-
     <% end %>
   </dl>
 </table>
+<% User.all.each do |user| %>
+  <% if @project.followers?(user.id) %>
+    <% if @project.sts == -1%>
+      <% if current_user.email == @project.mentor || current_user.email == user.email%>
+        <input type="text" name="" value="">Feedback
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
+
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <input type="button" onclick="history.back();" value="Назад"/>
+
+<script>
+  $( window ).load(function() {
+    if (window.location.href.indexOf('reload')==-1) {
+        window.location.replace(window.location.href+'?reload');
+    }
+  });
+</script>

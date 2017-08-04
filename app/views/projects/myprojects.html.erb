@@ -1,69 +1,130 @@
-<% if current_user.check == true %>
-  <% @myprojects.each do |project| %>
-  <div class="my_project_preview row col-lg-10 col-lg-offset-1">
-    <div>
-      <div class="col-lg-2 col-md-2">
-        <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
-      </div>
-      <div class="my_project_preview_info col-lg-5">
-        <p class = "my_project_title"><%= project.title %></p>
-        <p class = "mentor">Mentor: <%= project.mentor %></p>
-      </div>
-      <div class="myright_text col-lg-4">
-        <p>До: 12 августа 2017</br>
-        Цена: <%= project.price %></p>
-      </div>
-      <div class="message col-lg-1">
-        <button type="button" class="btn btn-primary my_open_full" data-toggle="modal" data-target="#modal_tasks_<%= project.id %>"><span class="glyphicon glyphicon-menu-right"  aria-hidden="true"></span></button>
-        </button>
-      </div>
-    </div>
-    <div class="modal fade" id="modal_tasks_<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content news_modal">
-          <div class="modal-header">
-            <button type="button-large" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h2><%= project.title %></h2>
-          </div>
-
-          <h4><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
-          <h4><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
+<% if user_signed_in? %>
+  <% if current_user.check == true %>
+    <h1>Ваши проекты</h1>
+    <% @myprojects.each do |project| %>
+    <div class="my_project_preview row col-lg-10 col-lg-offset-1">
+      <div>
+        <div class="col-lg-2 col-md-2">
           <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
-          <p class = "heading">Описание</p>
-          <p>
-            <%=project.description%>
-          </p>
-          <p class = "heading">Пример</p>
-          <p>
-            Необходимо создать онлайн-платформу для размещения задач от компаний.
-             Верификация пользователей, не должна портить пользовательский опыт
-             (т.е. будет легкой и удобной).
-            Все пользователи должны иметь возможность видеть задачи, задавать вопросы,
-            получать ответы.
-          </p>
-          <p class = "heading">Требования к человеку</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <div class="links">
-            <div class="">
-              <%= link_to 'Show', project %>
+        </div>
+        <div class="my_project_preview_info col-lg-5">
+          <p class = "my_project_title"><%= project.title %></p>
+          <p class = "mentor">Mentor: <%= project.mentor %></p>
+        </div>
+        <div class="myright_text col-lg-4">
+            До: <%= project.deadline %></br>
+            <% a=Date.parse(Time.now.strftime("%Y/%m/%d"))%>
+            Осталось дней: <%= (project.deadline.mjd-a.mjd) %></br>
+            Цена: <%= project.price %> тг
+        </div>
+
+        <div class="message col-lg-1">
+          <button type="button" class="btn btn-primary my_open_full" data-toggle="modal" data-target="#modal_tasks_<%= project.id %>"><span class="glyphicon glyphicon-menu-right"  aria-hidden="true"></span></button>
+          </button>
+        </div>
+      </div>
+      <div class="modal fade" id="modal_tasks_<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content news_modal">
+            <div class="modal-header">
+              <button type="button-large" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2><%= project.title %></h2>
             </div>
-            <div class="link">
-              <%= link_to 'Edit', edit_project_path(project),class:"link" %><br/>
-            </div>
-            <div class="link">
-              <%= link_to 'Destroy', project, method: :delete,
-                          data: { confirm: 'Are you sure?' } %>
+
+            <h4><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
+            <h4><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
+            <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
+            <p class = "heading">Описание</p>
+            <p>
+              <%=project.description%>
+            </p>
+            <p class = "heading">Пример</p>
+            <p>
+              Необходимо создать онлайн-платформу для размещения задач от компаний.
+               Верификация пользователей, не должна портить пользовательский опыт
+               (т.е. будет легкой и удобной).
+              Все пользователи должны иметь возможность видеть задачи, задавать вопросы,
+              получать ответы.
+            </p>
+            <p class = "heading">Требования к человеку</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="links">
+              <div class="">
+                <%= link_to 'Show', project %>
+              </div>
+              <div class="link">
+                <%= link_to 'Edit', edit_project_path(project),class:"link" %><br/>
+              </div>
+              <div class="link">
+                <%= link_to 'Destroy', project, method: :delete,
+                            data: { confirm: 'Are you sure?' } %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
-  <%end%>
-<% else %>
-  <% @myprojects.each do |project| %>
-    <% if current_user.following?(project.id) %>
+      </div>
+    <%end%>
 
+  <% else %>
+    <h1>Проекты которые вы делаете</h1>
+    <% @myprojects.each do |project| %>
+      <% if current_user.following?(project.id) %>
+        <div class="my_project_preview row col-lg-10 col-lg-offset-1">
+          <div>
+            <div class="col-lg-2 col-md-2">
+              <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
+            </div>
+            <div class="my_project_preview_info col-lg-5">
+              <p class = "my_project_title"><%= project.title %></p>
+              <p class = "mentor">Mentor: <%= project.mentor %></p>
+            </div>
+            <div class="myright_text col-lg-4">
+              <p>До: 12 августа 2017</br>
+              Цена: <%= project.price %></p>
+            </div>
+            <div class="message col-lg-1">
+              <button type="button" class="btn btn-primary my_open_full" data-toggle="modal" data-target="#modal_tasks_<%= project.id %>"><span class="glyphicon glyphicon-menu-right"  aria-hidden="true"></span></button>
+              </button>
+            </div>
+          </div>
+          <div class="modal fade" id="modal_tasks_<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content news_modal">
+                <div class="modal-header">
+                  <button type="button-large" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h2><%= project.title %></h2>
+                </div>
+
+                <h4><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
+                <h4><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
+                <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
+                <p class = "heading">Описание</p>
+                <p>
+                  <%=project.description%>
+                </p>
+                <p class = "heading">Пример</p>
+                <p>
+                  Необходимо создать онлайн-платформу для размещения задач от компаний.
+                   Верификация пользователей, не должна портить пользовательский опыт
+                   (т.е. будет легкой и удобной).
+                  Все пользователи должны иметь возможность видеть задачи, задавать вопросы,
+                  получать ответы.
+                </p>
+                <p class = "heading">Требования к человеку</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="links">
+                  <%= render "partials/follow_status", object: project %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <h1>Проекты на которых вы менторствуете</h1>
+    <% @myprojects.each do |project|%>
+      <% if current_user.email == project.mentor%>
       <div class="my_project_preview row col-lg-10 col-lg-offset-1">
         <div>
           <div class="col-lg-2 col-md-2">
@@ -74,9 +135,12 @@
             <p class = "mentor">Mentor: <%= project.mentor %></p>
           </div>
           <div class="myright_text col-lg-4">
-            <p>До: 12 августа 2017</br>
-            Цена: <%= project.price %></p>
+              До: <%= project.deadline %></br>
+              <% a=Date.parse(Time.now.strftime("%Y/%m/%d"))%>
+              Осталось дней: <%= (project.deadline.mjd-a.mjd) %></br>
+              Цена: <%= project.price %> тг
           </div>
+
           <div class="message col-lg-1">
             <button type="button" class="btn btn-primary my_open_full" data-toggle="modal" data-target="#modal_tasks_<%= project.id %>"><span class="glyphicon glyphicon-menu-right"  aria-hidden="true"></span></button>
             </button>
@@ -108,23 +172,27 @@
               <p class = "heading">Требования к человеку</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <div class="links">
-                <%= render "partials/follow_status", object: project %>
+                <div class="">
+                  <%= link_to 'Show', project %>
+                </div>
+                <div class="link">
+                  <%= link_to 'Edit', edit_project_path(project),class:"link" %><br/>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
 
 
-
-
-
-
-
-<% if user_signed_in? %>
-<%= link_to 'New project', new_project_path %>
-<% end %>
+<script>
+  $( window ).load(function() {
+    if (window.location.href.indexOf('reload')==-1) {
+        window.location.replace(window.location.href+'?reload');
+    }
+  });
+</script>

@@ -1,3 +1,4 @@
+<%if user_signed_in?%>
 <div class="container">
   <div >
     <%= image_tag current_user.avatar(:medium),class:"profile_image" %>
@@ -35,3 +36,16 @@
     </div>
   </div>
 </div>
+<%else%>
+  <script type="text/javascript">
+  window.location.href="/users/sign_in"
+  </script>
+<% end %>
+
+<script>
+  $( window ).load(function() {
+    if (window.location.href.indexOf('reload')==-1) {
+        window.location.replace(window.location.href+'?reload');
+    }
+  });
+</script>

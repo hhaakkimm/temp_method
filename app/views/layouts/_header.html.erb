@@ -1,10 +1,6 @@
-<script>
-  $( window ).load(function() {
-    if (window.location.href.indexOf('reload')==-1) {
-         window.location.replace(window.location.href+'?reload');
-    }  
-  });
-</script>
+
+
+
 <nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -37,8 +33,12 @@
                 <ul class="dropdown-menu">
                   <li><a  href="http://localhost:3000/pages/profile">Мой профиль</a></li>
                   <li><a href="http://localhost:3000/pages/profile/myprojects">Мои проекты</a></li>
+                  <% if current_user.check == true %>
+                  <li> <%= link_to 'New project', new_project_path %></li>
+                  <%end%>
                   <li><%= link_to "Переписки", conversations_path%></li>
                   <li><%= link_to('Выйти', destroy_user_session_path, method: :delete) %></li>
+
                 </ul>
               </li>
             <%else%>
@@ -49,17 +49,18 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-
-    <% ntf = 0 %>
-    <% User.all.each do |friend| %>
-    <% if !(current_user.followinguser?(friend.id) && friend.followinguser?(current_user.id))%>
-        <% if friend.followinguser?(current_user.id) %>
-          <% if current_user.email != friend.email %>
-            <% ntf += 1%>
+    <%if user_signed_in? %>
+      <% ntf = 0 %>
+      <% User.all.each do |friend| %>
+        <% if !(current_user.followinguser?(friend.id) && friend.followinguser?(current_user.id))%>
+          <% if friend.followinguser?(current_user.id) %>
+            <% if current_user.email != friend.email %>
+              <% ntf += 1%>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
+      <% current_user.notification = ntf %>
+      <% current_user.save %>
     <% end %>
-    <% current_user.notification = ntf %>
-    <% current_user.save %>
 <!--//////////////////////////////////////////////////End of navbar///////////////////////////////////// -->

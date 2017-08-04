@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20170803025423) do
     t.integer "user_id"
     t.string "mentor"
     t.integer "sts", default: 0
+    t.date "deadline"
     t.string "file_file_name"
     t.string "file_content_type"
     t.integer "file_file_size"

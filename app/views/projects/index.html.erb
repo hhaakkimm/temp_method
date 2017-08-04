@@ -12,14 +12,14 @@
 
 <div class="mikaskazala col-lg-9 col-md-9">
   <div class="project fadeInRight wow">
-    <table class="projects_preview1">
+    <table class="projects_preview">
       <tr class ="mikaskazala2">
         <td class = "projects_preview_img_td">
           <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
         </td>
         <td class="description">
           <h4><%= project.title %></h4>
-          <h6 class = "from"><%= project.user.email %></h6>
+          <h6 class = "from"><%= project.user.email %> <br>
 
 
           <% count = 0 %>
@@ -47,11 +47,15 @@
           <% elsif project.sts == -1%>
             <h4>закончен</h4>
           <% end %>
+          </h6>
         </td>
         <td class="date">
-          До: 12 августа 2017</br>
-          <%= project.price %>
+          До: <%= project.deadline %></br>
+          <% a=Date.parse(Time.now.strftime("%Y/%m/%d"))%>
+          Осталось дней: <%= (project.deadline.mjd-a.mjd) %></br>
+          Цена: <%= project.price %> тг
         </td>
+
         <td class="news_arrow">
           <button type="button" class="btn btn-primary open_full" data-toggle="modal" data-target="#modal_tasks_<%= project.id %>"><span class="glyphicon glyphicon-menu-right"  aria-hidden="true"></span></button>
           </button>
@@ -96,12 +100,14 @@
               <% end %>
             <% end %>
           </div>
+
           <div class="open_company_profile">
             <p><a href="#">Открыть профайл компании</a></p>
             <% if project.file.url(:original, false) != "/files/original/missing.png"%>
               <%= link_to "Download", project.file.url(:original, false) %>
             <% end %>
           </div>
+        
         </div>
       </div>
     </div>
@@ -133,3 +139,12 @@
 
   <script>new WOW().init();</script>
 </body>
+
+
+<script>
+  $( window ).load(function() {
+    if (window.location.href.indexOf('reload')==-1) {
+        window.location.replace(window.location.href+'?reload');
+    }
+  });
+</script>

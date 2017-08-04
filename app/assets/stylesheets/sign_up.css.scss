@@ -117,8 +117,7 @@
 .sign_up_header h1{
   color:#ed1c40;
 }
-.sign_up_form{
-}
+
 .email{
   padding-top: 5%;
   padding-bottom: 5%;
@@ -167,53 +166,4 @@
 {
   padding-top: 5%;
   border-top: 1px solid lightgray;
-}
-
-@media screen and (max-width: 768px) {
-  .navbar{
-    background: rgb(48,48,48) !important;
-  }
-  .navbar-brand{
-    position: absolute;
-    margin: 15px 0 0 -180px;
-  }
-  .navbar-toggle{
-    position: absolute;
-    margin: 20px 0 0 130px;
-  }
-  .navbar-collapse{
-    position: absolute;
-    background:rgb(48,48,48) !important;
-    width: 30%;
-    margin: 15% 0 0 65% !important;
-    border: none;
-  }
-  .main_page_link, .sign_up_link, .log_in_link{
-    color: white !important;
-  }
-  .sign_up_link{
-    background: none !important;
-    border: none;
-  }
-  .sign_up_link:active{
-    background: none !important;
-    border: none;
-  }
-.reg_image{
-  display: none;
-  }
-  h3{
-    position: absolute;
-    margin: 0 0 0 35%;
-  }
-  h5{
-    color: #DCDCDC   !important;
-  }
-  .sign_up{
-    width: 90%;
-    margin-left: 5%;
-  }
-  .regkeys{
-    margin-top: 5%;
-  }
 }

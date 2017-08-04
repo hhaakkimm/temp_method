@@ -1,4 +1,8 @@
+
+
 <%= form_for(@project) do |f| %>
+
+
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %>
@@ -12,32 +16,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description, rows: 6 %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
-  <% if user_signed_in? %>
+
+    <div class="field">
+      <%= f.label :title,style:"margin-top:20px;" %><br>
+      <%= f.text_field :title,class:"input" %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, rows: 6, class:"input" %>
+    </div>
+    <div class="field">
+      <%= f.label :price %><br>
+      <%= f.text_field :price,class:"input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :deadline %><br>
+      <%= f.date_field :deadline,class:"input" %>
+    </div>
+
     <div class="field">
       <%= f.label :mentor %><br>
-      <%= f.text_field :mentor %>
+      <%= f.text_field :mentor,class:"input" %>
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :file %><br>
-    <%= f.file_field :file %>
-  </div>
-  <%= f.radio_button :sts, '1'%> в процессе <br/>
-  <%= f.radio_button :sts, '0' %> в рассмотрении <br>
-  <%= f.radio_button :sts, '-1' %> закончен <br>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+    <div class="field">
+      <%= f.label :file %><br>
+      <%= f.file_field :file,class:"avatar" %>
+    </div>
+    <%= f.radio_button :sts, '1'%> в процессе <br/>
+    <%= f.radio_button :sts, '0' %> в рассмотрении <br>
+    <%= f.radio_button :sts, '-1' %> закончен <br>
+    <div class="actions">
+      <%= f.submit "Создать" ,class:"sign_up_button1"%>
+
+    </div>
+
+
 <% end %>
