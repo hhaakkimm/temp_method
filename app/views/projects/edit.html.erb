@@ -1,6 +1,12 @@
-<h1>Editing Project</h1>
+<% if user_signed_in?%>
+  <% if current_user.email == @project.user.email || current_user.email == @project.mentor%>
+    <h1>Editing Project</h1>
 
-<%= render 'form', project: @project %>
+    <%= render 'form', project: @project %>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+    <%= link_to 'Show', @project %> |
+    <%= link_to 'Back', projects_path %>
+  <% else %>
+    <h1>К сожалению, у вас нет полномочий на изменение этого проекта</h1>
+  <% end %>
+<% end %>

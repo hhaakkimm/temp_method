@@ -1,10 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'chosen';
+
+
 body{
   text-align: center;
   background-color: rgb(238,238,238) !important;
   font-family: 'Anonymous Pro', monospace !important;
-  padding-top:70px;
+  padding-top:60px;
 }
 #nav
 {
@@ -87,13 +90,17 @@ body{
   background: #ed1c40;
   border-color: #ed1c40;
 }
+
 .projects_preview {
-  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+tbody{
+  border-radius: 5px;
 }
 .projects_preview tr{
-    border: 1px solid #E8E8E8;
-    border-radius: 5px;
-}
+
+  }
 .projects_preview td
 {
   padding-bottom: 2%;
@@ -163,6 +170,7 @@ body{
   /*background: rgba(0,0,0,0.5) !important;*/
   background: rgba(255,255,255,0.9) !important;
   color: black;
+  border-radius:10px;
 }
 .top
 {
@@ -211,12 +219,13 @@ body{
   padding: 5%;
 }
 .news_modal a{
-  padding: 10px !important;
+  padding: 6px !important;
   border: 1px solid rgba(0,0,0,.12);
   stroke: transparent;
   color: #fff!important;
   background: #ed1c40;
   border-color: #ed1c40;
+  border-radius: 5px;
 }
 .task_img
 {
@@ -227,4 +236,140 @@ body{
 {
   margin-bottom: 20px;
   margin-top: 20px;
+}
+
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  body
+  {
+    padding-top: 60px !important;
+  }
+  .navbar-brand{
+    position: absolute;
+    margin-left:-80px;
+  }
+  .navbar-toggle{
+    margin: 20px 0 0 130px !important;
+  }
+  .navbar-collapse{
+    position: absolute;
+    background:rgb(48,48,48) !important;
+    width: 50%;
+    margin: 13px 0 0 45% !important;
+    border: none;
+  }
+  .collapsing
+  {
+    position: absolute;
+    background:rgb(48,48,48) !important;
+    width: 50%;
+    margin: 13px 0 0 45% !important;
+    border: none;
+  }
+  .main_page_link, .sign_up_link, .log_in_link{
+    color: white !important;
+  }
+  .sign_up_link{
+    background: none !important;
+    border: none;
+  }
+  .sign_up_link:active{
+    background: none !important;
+    border: none;
+  }
+  .prelogandsignli{
+    margin: 5% 0 0 35% !important;
+  }
+  .fadeInRight{
+    animation-name: none;
+  }
+  .mikaskazala{
+    margin-bottom: 5%;
+    margin-left: 0;
+  }
+  .top{
+    display: none;
+  }
+  input{
+    border: 1px solid lightgray;
+  }
+  #user_avatar
+  {
+    margin-left: 25px;
+  }
+  #footer
+  {
+    display:none;
+  }
+
+  .how_img .img
+  {
+    float: none !important;
+    width: 50% !important;
+    margin: 0 !important;
+  }
+  .how_text
+  {
+    margin-top: 0% !important;
+    padding: 2% !important;
+  }
+  .user_avatar
+  {
+    margin-top: 10px;
+  }
+  .profile_image
+  {
+    float: none !important;
+    width: 50% !important;
+  }
+
+  .name
+  {
+    padding: 0 !important;
+  }
+  .info ul
+  {
+    padding: 0;
+  }
+  .myrow{
+    float: none !important;
+  }
+  .info1,.info{
+    margin: 0 !important;
+    width: 100% !important;
+    float: none !important;
+    height: 20vh !important;
+  }
+  .name{
+    padding-left: 0 !important;
+  }
+  .myright_text
+  {
+    margin-top: 15px !important;
+  }
+  .message
+  {
+    margin-top: 0 !important;
+  }
+  .right_text
+  {
+    margin-top: 20px !important;
+  }
+  .my_project_preview
+  {
+    padding: 10px 15px !important;
+  }
+  .days_left
+  {
+    display: none;
+  }
+
 }

@@ -9,24 +9,21 @@
   padding-bottom: 3%;
   background-color: white;
 }
-
+.log_in_header
+{
+  border-bottom: 1px solid lightgray;
+}
 .log_in_header h1
 {
   color:#ed1c40;
 }
-.email
+.log_in_form
 {
-  padding-top: 1%;
-  padding-bottom: 5%;
-
+  padding-top: 5%;
 }
-.password
+.log_in_field
 {
-  padding-top: 1%;
-  padding-bottom: 5%;
-}
-.password input{
-  margin-top: 3%;
+  margin-top: 2%;
 }
 .log_in_button1
 {

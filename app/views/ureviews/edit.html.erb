@@ -1,0 +1,56 @@
+<div class="col-md-10 col-md-offset-1">
+  <div class="edit-review-form">
+<h1> Edit Review </h1>
+  <%= form_for([@reviewed, @ureview], url:  edit_reviewed_ureview_url) do |f| %>
+    <div id="ratingone-form">
+      <label> Rating </label>
+    </div>
+    <div id="ratingtwo-form">
+      <label> Rating </label>
+    </div>
+    <div id="ratingthree-form">
+      <label> Rating </label>
+    </div>
+    <div id="ratingfour-form">
+      <label> Rating </label>
+    </div>
+    <div id="ratingfive-form">
+      <label> Rating </label>
+    </div>
+    <%= f.label :ucomment %><br>
+    <%= f.text_field :ucomment %>
+    <%= f.submit "create"%>
+  <% end %>
+</div>
+</div>
+<input type="button" onclick="history.back();" value="Назад"/>
+<script>
+  $('#ratingone-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingone]'
+  });
+</script>
+<script>
+  $('#ratingtwo-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingtwo]'
+  });
+</script>
+<script>
+  $('#ratingthree-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingthree]'
+  });
+</script>
+<script>
+  $('#ratingfour-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingfour]'
+  });
+</script>
+<script>
+  $('#ratingfive-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingfive]'
+  });
+</script>

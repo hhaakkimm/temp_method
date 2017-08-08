@@ -6,9 +6,10 @@
   margin-bottom: 2%;
   background-color: white;
 }
+
 .project_picture
 {
-  width: 80%;
+  width: 40%;
   border-radius: 20px;
   margin-left: 2%;
 }
@@ -41,7 +42,7 @@
 }
 .link
 {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .follow_link
 {

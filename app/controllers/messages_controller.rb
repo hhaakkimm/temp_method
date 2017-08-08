@@ -1,42 +1,14 @@
 class MessagesController < ApplicationController
-  before_action :check_sign_in, only: [:create, :index, :new]
-  before_action do
-    @conversation = Conversation.find(params[:conversation_id])
-  end
-
-  def index
-    @messages = @conversation.messages
-    if @messages.length > 10
-      @over_ten = true
-      @messages = @messages[-10..-1]
-    end
-    if params[:m]
-      @over_ten = false
-      @messages = @conversation.messages
-    end
-    if @messages.last
-      if @messages.last.user_id != current_user.id
-        @messages.last.read = true;
-      end
-    end
-    @message = @conversation.messages.new
-  end
+  before_action :authenticate_user!
 
   def new
-    @message = @conversation.messages.new
+    @chosen_recipient = User.find_by(id: params[:to].to_i) if params[:to]
   end
 
   def create
-    @message = @conversation.messages.new(message_params)
-    if @message.save
-      redirect_to conversation_messages_path(@conversation)
-    end
+    recipients = User.where(id: params['recipients'])
+    conversation = current_user.send_message(recipients, params[:message][:body], params[:message][:subject]).conversation
+    flash[:success] = "Message has been sent!"
+    redirect_to conversation_path(conversation)
   end
-
-
-
-  private
-    def message_params
-      params.require(:message).permit(:body, :user_id)
-    end
 end

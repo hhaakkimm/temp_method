@@ -32,11 +32,12 @@
                 <a class="dropdown-toggle dropdown_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email%>  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a  href="http://localhost:3000/pages/profile">Мой профиль</a></li>
-                  <li><a href="http://localhost:3000/pages/profile/myprojects">Мои проекты</a></li>
+                  <li><a href="http://localhost:3000/pages/profile/myprojects">Мои задачи</a></li>
+                  <li><%= link_to 'Your Conversations', conversations_path %></li>
                   <% if current_user.check == true %>
-                  <li> <%= link_to 'New project', new_project_path %></li>
+                  <li> <%= link_to 'Добавить задачу', new_project_path %></li>
                   <%end%>
-                  <li><%= link_to "Переписки", conversations_path%></li>
+
                   <li><%= link_to('Выйти', destroy_user_session_path, method: :delete) %></li>
 
                 </ul>

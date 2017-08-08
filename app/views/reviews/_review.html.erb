@@ -1,0 +1,11 @@
+<p><%= link_to review.user.email, review.user%></p>
+<p><%= review.comment %></p>
+<% if user_signed_in? %>
+  <% if review.user.email == current_user.email %>
+    <%= link_to "Edit", edit_project_review_path(review.project, review)%> |
+  <% end %>
+  <% if current_user.email == @project.user.email || review.user.email == current_user.email%>
+    <%= link_to "Delete", project_review_path(review.project, review), method: :delete, data: { confirm: "Are you sure?"}%>
+  <% end %>
+<% end %>
+<hr>

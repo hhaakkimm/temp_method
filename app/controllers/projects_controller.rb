@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :check_sign_in, only: [:create, :edit, :new, :destroy, :update, :myprojects, :show]
   # GET /projects
   # GET /projects.json
   def index
@@ -9,6 +10,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @data = params[:text1]
   end
 
   # GET /projects/new

@@ -5,13 +5,22 @@ class User < ApplicationRecord
   validates :name, presence:true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
+  acts_as_messageable
+
   has_many :projects
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100#", large: "600x600>"}, default_url: "http://www.pi-cube.com/wp-content/uploads/2015/04/team-placeholder.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   has_many :relationships
-
+  has_many :reviews
   has_many :friendships
   has_many :friends, :through => :friendships
+  has_many :ureviews
+
+  def mailboxer_email(object)
+    email
+  end
 
   def	following?(project_id)
 		self.relationships.find_by_project_id(project_id)

@@ -2,7 +2,8 @@
   <% if current_user.check == true %>
     <h1>Ваши проекты</h1>
     <% @myprojects.each do |project| %>
-    <div class="my_project_preview row col-lg-10 col-lg-offset-1">
+    <% if project.user.email == current_user.email%>
+    <div class="my_project_preview row col-lg-10 col-lg-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 col-sm-offset-1" data-wow-duration="1.5s">
       <div>
         <div class="col-lg-2 col-md-2">
           <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
@@ -30,13 +31,15 @@
               <button type="button-large" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h2><%= project.title %></h2>
             </div>
+            <div class="span">
+              <h4 ><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
+              <h4 ><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
+            </div>
 
-            <h4><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
-            <h4><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
-            <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
-            <p class = "heading">Описание</p>
+            <%= image_tag project.user.avatar(:thumb),class:"project_picture" %>
+            <p class = "heading" style="padding-top:2%;">Описание</p>
             <p>
-              <%=project.description%>
+               <%=project.description%>
             </p>
             <p class = "heading">Пример</p>
             <p>
@@ -50,13 +53,13 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <div class="links">
               <div class="">
-                <%= link_to 'Show', project %>
+                <%= link_to 'Открыть страницу задачи', project %>
               </div>
               <div class="link">
-                <%= link_to 'Edit', edit_project_path(project),class:"link" %><br/>
+                <%= link_to 'Изменить задачу', edit_project_path(project),class:"link" %><br/>
               </div>
               <div class="link">
-                <%= link_to 'Destroy', project, method: :delete,
+                <%= link_to 'Удалить задачу', project, method: :delete,
                             data: { confirm: 'Are you sure?' } %>
               </div>
             </div>
@@ -64,8 +67,8 @@
         </div>
       </div>
       </div>
-    <%end%>
-
+      <% end %>
+      <%end%>
   <% else %>
     <h1>Проекты которые вы делаете</h1>
     <% @myprojects.each do |project| %>
@@ -96,9 +99,9 @@
                   <h2><%= project.title %></h2>
                 </div>
 
-                <h4><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
-                <h4><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
-                <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
+                <h4 class="span"><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
+                <h4 class="span"><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
+                <%= image_tag project.user.avatar(:thumb),class:"project_picture" %>
                 <p class = "heading">Описание</p>
                 <p>
                   <%=project.description%>
@@ -113,6 +116,9 @@
                 </p>
                 <p class = "heading">Требования к человеку</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="">
+                  <%= link_to 'Открыть страницу задачи', project %>
+                </div><br>
                 <div class="links">
                   <%= render "partials/follow_status", object: project %>
                 </div>
@@ -154,9 +160,9 @@
                 <h2><%= project.title %></h2>
               </div>
 
-              <h4><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
-              <h4><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
-              <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
+              <h4 class="span"><span style="font-weight:800; font-size:2rem;">До:</span> 12 августа 2017</h4>
+              <h4 class="span"><span style="font-weight:800; font-size:2rem;">Вознаграждение:</span>  <%= project.price %></h4>
+              <%= image_tag project.user.avatar(:thumb),class:"project_picture" %>
               <p class = "heading">Описание</p>
               <p>
                 <%=project.description%>
@@ -173,10 +179,10 @@
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <div class="links">
                 <div class="">
-                  <%= link_to 'Show', project %>
+                  <%= link_to 'Открыть страницу задачи', project %>
                 </div>
                 <div class="link">
-                  <%= link_to 'Edit', edit_project_path(project),class:"link" %><br/>
+                  <%= link_to 'Изменить задачу', edit_project_path(project),class:"link" %><br/>
                 </div>
               </div>
             </div>

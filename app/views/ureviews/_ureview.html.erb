@@ -1,0 +1,23 @@
+<div class="review">
+  <p>от: <%= link_to ureview.user_id, ureview.user%> | <%= link_to ureview.user.email, ureview.user%></p>
+  <p>для: <%= ureview.reviewed_id%> | <%= ureview.reviewed.email%></p>
+  <div class="review">
+    <div class="review-rating" data-source="<%= ureview.uratingone %>">  Энтузиазм </div>
+    <div class="review-rating" data-source="<%= ureview.uratingtwo %>"> Качество работы </div>
+    <div class="review-rating" data-source="<%= ureview.uratingthree %>"> Взаимоуважение </div>
+    <div class="review-rating" data-source="<%= ureview.uratingfour %>"> Опыт </div>
+    <div class="review-rating" data-source="<%= ureview.uratingfive %>"> Адаптивность </div>
+
+    <% av = ureview.uratingone + ureview.uratingtwo + ureview.uratingthree + ureview.uratingfour + ureview.uratingfive%>
+
+    <div class="review-rating" data-source="<%= av/5 %>"> Average </div>
+
+
+
+  </div>
+  <p class="review-comment">Коментарии: <%= ureview.ucomment %></p>
+  <div class="links btn-group">
+    <%= link_to "Edit", edit_reviewed_ureview_path(ureview.reviewed, ureview)%>
+    <%= link_to "Delete", reviewed_ureview_path(ureview.reviewed, ureview), method: :delete, data: { confirm: "Are you sure?"}%>
+  </div>
+</div>

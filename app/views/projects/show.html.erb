@@ -8,6 +8,15 @@
     <dt><%= @project.price %></dt>
     <dt><%= @project.mentor %></dt>
     <dt><%= @project.sts %></dt>
+
+    До: <%= @project.deadline %></br>
+    <% a=Date.parse(Time.now.strftime("%Y/%m/%d"))%>
+    <p class = "days_left">Осталось дней: <%= (@project.deadline.mjd-a.mjd) %></p>
+    <% if @project.deadline.mjd-a.mjd == 0%>
+      <% @project.sts = -1%>
+      <% @project.save%>
+    <% end %>
+
     <% if @project.sts == 1%>
       <h4>в процессе</h4>
     <% elsif @project.sts == 0%>
@@ -34,27 +43,109 @@
     <% end %>
   </dl>
 </table>
+<% a = false %>
 <% User.all.each do |user| %>
-  <% if @project.followers?(user.id) %>
-    <% if @project.sts == -1%>
-      <% if current_user.email == @project.mentor || current_user.email == user.email%>
-        <input type="text" name="" value="">Feedback
+  <% if user.email == @project.mentor%>
+    <% $mentor = user %>
+  <% end %>
+<% end %>
+
+<% if @project.sts == -1%>
+  <% if current_user.email == $mentor.email %>
+    с кем вы закончили этот проект?<br>
+    <form action = "<%= @project.id%>" >
+      <input type="text" name="text1"> | <input type="submit"/> <br>
+    </form>
+    <% if @data != nil %>
+      <% a = true %>
+    <% end %>
+    <% User.all.each do |user| %>
+      <% if @project.followers?(user.id) %>
+        <%= user.email %><br>
       <% end %>
     <% end %>
   <% end %>
 <% end %>
 
+  <% User.all.each do |user| %>
+    <% if user.email == @data %>
+      <% $developer = user %>
+    <% end %>
+  <% end %>
+
+  <% if $developer != nil %>
+    <% User.all.each do |user| %>
+        <% if @project.sts == -1%>
+          <% if current_user.email == $mentor.email %>
+            <h1> Feedback about <%= $mentor.email %></h1>
+            <% @reviewed = $developer %>
+            <%= render @reviewed.ureviews %>
+            <%= link_to "Add Reviews", new_reviewed_ureview_path(@reviewed)%>
+          <% elsif current_user.email == $developer.email %>
+            <h1> Feedback about <%= $developer.email %></h1>
+            <% @reviewed = $mentor %>
+            <%= render @reviewed.ureviews %>
+            <%= link_to "Add Reviews", new_reviewed_ureview_path(@reviewed)%>
+          <% end %>
+        <% end %>
+        <%break%>
+      <% end %>
+    <% end %>
 
 
+<h1> Коментарии к проекту </h1>
+<%= render @project.reviews %><br>
+<%= link_to "Add Reviews", new_project_review_path(@project), class: "btn-custom" %>
+<br>
 
+<% if current_user.email == @project.user.email || current_user.email == @project.mentor%>
+  <%= link_to 'Edit', edit_project_path(@project) %> |
+<% end %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
 <input type="button" onclick="history.back();" value="Назад"/>
 
 <script>
-  $( window ).load(function() {
-    if (window.location.href.indexOf('reload')==-1) {
-        window.location.replace(window.location.href+'?reload');
-    }
-  });
+ $('.review-rating').raty({
+   readOnly: true,
+   score: function() {
+     return $(this).attr('data-source');
+   },
+   path: '/assets/'
+ });
 </script>
+<!-- <script>
+ $('.review-ratingtwo').raty({
+   readOnly: true,
+   score: function() {
+     return $(this).attr('data-source');
+   },
+   path: '/assets/'
+ });
+</script>
+<script>
+ $('.review-ratingthree').raty({
+   readOnly: true,
+   score: function() {
+     return $(this).attr('data-source');
+   },
+   path: '/assets/'
+ });
+</script>
+<script>
+ $('.review-ratingfour').raty({
+   readOnly: true,
+   score: function() {
+     return $(this).attr('data-source');
+   },
+   path: '/assets/'
+ });
+</script>
+<script>
+ $('.review-ratingfive').raty({
+   readOnly: true,
+   score: function() {
+     return $(this).attr('data-source');
+   },
+   path: '/assets/'
+ });
+</script> -->

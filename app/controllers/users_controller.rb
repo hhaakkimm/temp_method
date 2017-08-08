@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :check_sign_in, only: [:show, :index]
+  before_action :check_sign_in, only: [:show, :index, :my_friends]
   def index
     @users = User.where(["name LIKE ?","%#{params[:search]}"])
   end
@@ -7,9 +7,6 @@ class UsersController < ApplicationController
     @user	=	User.find(params[:id])
   end
   def my_friends
-    @friends = User.all
-  end
-  def requset
     @friends = User.all
   end
 end

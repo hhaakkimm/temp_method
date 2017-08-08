@@ -12,7 +12,6 @@
         <%= f.file_field :avatar,class:"avatar"%>
       </div>
       <br>
-
       <div class="field">
         <%= f.label :Имя %><br />
         <%= f.text_field :name,class:"input"%>
@@ -42,9 +41,6 @@
         <%= f.label "Текущий пароль" %> <i>(Введите текущий пароль чтобы сохранить изменения)</i><br />
         <%= f.password_field :current_password, autocomplete: "off" %>
       </div>
-
-      <%= f.radio_button :check, true %> Company <br/>
-      <%= f.radio_button :check, false %> User <br>
 
 
       <div class="actions">

@@ -8,48 +8,41 @@
     <%= devise_error_messages! %>
 
     <div class="sign_up_form">
+
+
       <div class="field">
         <h4><%= f.label :Фото %></h4>
         <%= f.file_field :avatar,class:"avatar"%>
       </div>
       <br>
+      <%= f.radio_button :check, true %> Компания<br/>
+      <%= f.radio_button :check, false %> Разработчик | Ментор<br>
+      <br>
+
       <div class="field">
-        <%= f.label :Имя %><br />
-        <%= f.text_field :name,class:"input"%>
+        <%= f.text_field :name,class:"input",placeholder:"Имя"%>
       </div>
 
       <div class="field">
-        <%= f.label "Обо мне" %><br />
-        <%= f.text_field :about,class:"input"%>
+        <%= f.text_field :about,class:"input",placeholder:"Обо мне"%>
       </div>
 
       <div class="field">
-        <%= f.label "Контактный телефон" %><br />
-        <%= f.text_field :contact,class:"input"%>
+        <%= f.text_field :contact,class:"input",placeholder:"Контактный телефон"%>
       </div>
 
       <div class="field">
-        <%= f.label "Почта" %><br />
-        <%= f.email_field :email,class:"input" %>
+        <%= f.email_field :email,class:"input",placeholder:"Почта"%>
       </div>
 
       <div class="field">
-        <%= f.label :Пароль %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off",class:"input" %>
+        <%= f.password_field :password, autocomplete: "off",class:"input",
+                            placeholder:"Пароль(минимум 6 знаков)" %>
       </div>
 
       <div class="field">
-        <%= f.label "Повторите пароль" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" ,class:"input"%>
+        <%= f.password_field :password_confirmation, autocomplete: "off" ,class:"input",placeholder:"Повторите пароль"%>
       </div>
-
-
-      <%= f.radio_button :check, true %> Company <br/>
-      <%= f.radio_button :check, false %> User <br>
-
 
       <div class="actions">
         <%= f.submit "Зарегистрироваться",class:"sign_up_button1" %>

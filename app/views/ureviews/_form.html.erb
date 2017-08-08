@@ -1,0 +1,50 @@
+<%= form_for([@reviewed, @reviewed.ureviews.build], url: reviewed_ureviews_url) do |f| %>
+  <div id="ratingone-form">
+    <label> Энтузиазм </label>
+  </div>
+  <div id="ratingtwo-form">
+    <label> Качество работы </label>
+  </div>
+  <div id="ratingthree-form">
+    <label> Взаимоуважение  </label>
+  </div>
+  <div id="ratingfour-form">
+    <label> Опыт </label>
+  </div>
+  <div id="ratingfive-form">
+    <label> Адаптивность </label>
+  </div>
+  <%= f.label :Коментарии %><br>
+  <%= f.text_field :ucomment %>
+  <%= f.submit "create" %>
+<% end %>
+<script>
+  $('#ratingone-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingone]'
+  });
+</script>
+<script>
+  $('#ratingtwo-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingtwo]'
+  });
+</script>
+<script>
+  $('#ratingthree-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingthree]'
+  });
+</script>
+<script>
+  $('#ratingfour-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingfour]'
+  });
+</script>
+<script>
+  $('#ratingfive-form').raty({
+    path: '/assets/',
+    scoreName: 'ureview[uratingfive]'
+  });
+</script>

@@ -1,0 +1,11 @@
+<% if current_user.email == @review.user.email %>
+  <h1> Edit Review </h1>
+  <%= form_for([@project, @review]) do |f| %>
+    <%= f.label :comment %><br>
+    <%= f.text_field :comment,class:"input" %>
+    <%= f.submit "create", class:"btn-custom2" %>
+  <% end %>
+<% else %>
+  <h1>Данная функция вам не доступна</h1>
+<% end %>
+<input type="button" onclick="history.back();" value="Назад"/>

@@ -7,6 +7,7 @@
     <% if @user.email == current_user.email %>
         <h6 class = "name"><%= link_to('Edit', edit_user_registration_path) %> </h6>
     <%end%>
+
   </div>
     <div class="row">
       <div class="info">
@@ -30,13 +31,11 @@
         <h3 class="hd" style = "font-weight: 600">Контакты</h3>
         <p class="sub-txt"><%= @user.email %></p>
         <p class="sub-txt"><%= @user.contact %></p>
-
       </div>
-
-
     </div>
   </div>
 </div>
+
 
 
 <script>

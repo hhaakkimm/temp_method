@@ -1,7 +1,4 @@
-
-
 <body>
-
 <%= form_tag projects_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Поиск" %>
@@ -9,19 +6,16 @@
 <br/>
 
 <% @projects.each do |project| %>
-
-<div class="mikaskazala col-lg-9 col-md-9">
-  <div class="project fadeInRight wow">
+<div class="mikaskazala col-lg-9 col-md-9" >
+  <div class="project fadeInRight wow" data-wow-duration="2s">
     <table class="projects_preview">
-      <tr class ="mikaskazala2">
+      <tr style="border-radius:10px;">
         <td class = "projects_preview_img_td">
           <%= image_tag project.user.avatar(:thumb),class:"projects_preview_img" %>
         </td>
         <td class="description">
           <h4><%= project.title %></h4>
           <h6 class = "from"><%= project.user.email %> <br>
-
-
           <% count = 0 %>
           <% if project.sts != -1 %>
             <% User.all.each do |user| %>
@@ -52,10 +46,13 @@
         <td class="date">
           До: <%= project.deadline %></br>
           <% a=Date.parse(Time.now.strftime("%Y/%m/%d"))%>
-          Осталось дней: <%= (project.deadline.mjd-a.mjd) %></br>
+          <p class = "days_left">Осталось дней: <%= (project.deadline.mjd-a.mjd) %></p>
           Цена: <%= project.price %> тг
         </td>
-
+        <% if project.deadline.mjd-a.mjd == 0%>
+          <% project.sts = -1%>
+          <% project.save%>
+        <% end %>
         <td class="news_arrow">
           <button type="button" class="btn btn-primary open_full" data-toggle="modal" data-target="#modal_tasks_<%= project.id %>"><span class="glyphicon glyphicon-menu-right"  aria-hidden="true"></span></button>
           </button>
@@ -89,25 +86,30 @@
         <div class="links">
           <div class="work_with_project_link">
             <% if user_signed_in?%>
+            <div class="">
+              <%= link_to 'Открыть страницу задачи', project %>
+            </div>
               <% if current_user.check == false %>
                 <% if project.sts == -1 %>
                   <h4>Проект уже завершен</h4>
                 <% else %>
-                  <div class="follow_status">
-                    <%= render "partials/follow_status", object: project %>
-                  </div>
+                  <% if current_user.email != project.mentor%>
+                    <div class="follow_status">
+                      <%= render "partials/follow_status", object: project %>
+                    </div>
+                  <% end %>
                 <% end %>
               <% end %>
             <% end %>
           </div>
 
           <div class="open_company_profile">
-            <p><a href="#">Открыть профайл компании</a></p>
+            <%= link_to "Открыть профайл компании", project.user%>
             <% if project.file.url(:original, false) != "/files/original/missing.png"%>
               <%= link_to "Download", project.file.url(:original, false) %>
             <% end %>
           </div>
-        
+
         </div>
       </div>
     </div>
@@ -118,26 +120,11 @@
 <div class="top">
   <ul>
     <li style="font-size:2rem; font-weight:bold;">Best users</li>
-    <li>
-      <img src="" alt="" class="best_users_img img-circle">
-      <span class = "best_users_username">soska</span>
-    </li>
-    <li>
-      <img src="" alt="" class="best_users_img img-circle">
-      <span class = "best_users_username">soska</span>
-    </li>
-    <li>
-      <img src="" alt="" class="best_users_img img-circle">
-      <span class = "best_users_username">soska</span>
-    </li>
-    <li>
-      <img src="" alt="" class="best_users_img img-circle">
-      <span class = "best_users_username">soska</span>
-    </li>
+
   </ul>
 </div>
 
-  <script>new WOW().init();</script>
+
 </body>
 
 

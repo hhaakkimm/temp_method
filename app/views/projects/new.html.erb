@@ -1,5 +1,11 @@
-<div class="new_project_header">
-  <h1>Новый проект</h1>
-</div>
+<% if user_signed_in?%>
+  <% if current_user.check == true %>
+    <div class="new_project_header">
+      <h1>Новый проект</h1>
+    </div>
 
-<%= render 'form', project: @project %>
+    <%= render 'form', project: @project %>
+  <% else %>
+    <h1>К сожалению, у вас нет полномочий на создание проекта</h1>
+  <% end %>
+<% end %>

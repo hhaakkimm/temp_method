@@ -65,6 +65,8 @@
   margin-top: 0;
   width: 70%;
   margin-bottom: 3%;
+  height: 5vh;
+  padding-left: 10px;
 }
 .radio
 {
@@ -166,4 +168,18 @@
 {
   padding-top: 5%;
   border-top: 1px solid lightgray;
+}
+.icon
+{
+  position: absolute;
+  left: 75%;
+  top: 187px;
+  width: 29px;
+  height: 30px;
+  line-height: 29px;
+  text-align: center;
+  color:#d3677a;
+  padding-left: 16px;
+  border-left-width: 1px;
+  border-left-style: solid;
 }

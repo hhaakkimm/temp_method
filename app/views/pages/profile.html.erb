@@ -3,21 +3,21 @@
   <div >
     <%= image_tag current_user.avatar(:medium),class:"profile_image" %>
   </div>
-  <div class="profile_info">
+  <div class="profile_info ">
 
     <h2 class = "name"><%= current_user.name %></h2>
     <h6 class = "name"><%= link_to('Изменить', edit_user_registration_path) %></h6>
-    <div class="row">
-      <div class="info">
+    <div class="myrow ">
+      <div class="info  ">
 
         <h3 class="hd" style = "font-weight: 600">Информация о пользователе</h3>
           <p class="sub-txt"><%= current_user.about %></p>
       </div>
-      <div class="info1">
+      <div class="info1  ">
         <h3 class="hd" style = "font-weight: 600">Портфолио</h3>
 
       </div>
-      <div class="info">
+      <div class="info  ">
         <h3 class="hd" style = "font-weight: 600">Ключевые слова</h3>
           <ul>
             <li>Ruby</li>
@@ -25,7 +25,7 @@
             <li>C++</li>
           </ul>
       </div>
-      <div class="info1">
+      <div class="info12">
         <h3 class="hd" style = "font-weight: 600">Контакты</h3>
         <p class="sub-txt"><%= current_user.email %></p>
         <p class="sub-txt"><%= current_user.contact %></p>
@@ -36,6 +36,7 @@
     </div>
   </div>
 </div>
+
 <%else%>
   <script type="text/javascript">
   window.location.href="/users/sign_in"
